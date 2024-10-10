@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mobile</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">  
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
+</head>
+<style>
+    *{margin: 0;padding: 0;font-family: sans-serif;box-sizing:border-box;}
+    body{width: 100%;height: 100vh;overflow-x: hidden;overflow-y: scroll;scroll-behavior: smooth;scroll-snap-type: y mandatory;display: flex;align-items: center;justify-content: center;background-color:#f1f1f1;}
+    a{color: inherit;text-decoration: none;}
+    button,input{border: none;outline: none;transition:0.5s ease;}
+    button:active{scale:94%;}
+    ::-webkit-scrollbar{width:0;height:0;}
+</style>
+<body>
+
+    <style>
+        .outer_cover{width: 20.7pc;height: 95vh;border-radius: 26px;padding: 8px;background-color: #000000;border:3px solid #cacaca; overflow:hidden;box-shadow:2px 2px 15px 2px gray;z-index:2;}
+        .screen{width: 100%;height: 100%;background-color: #fff;border-radius: 25px;overflow:auto;position: relative;animation:popup 0.5s ease;}
+        @keyframes popup {
+            from{transform:translateY(20px);opacity:0;}
+            to{transform:translateY(0);opacity:1;}
+        }
+        #Home{position:relative;background: url(https://cdn.bhdw.net/im/mountain-nature-scenery-wallpaper-81094_w635.webp) center no-repeat;background-size: cover;padding:14px;}
+        .camera{border: 5px solid #000000;border-radius: 100%;position: absolute;top: 40px;}
+        @media(max-width: 1071px){
+            .outer_cover{
+                width: 18pc; 
+            }
+        }
+        .clock{width: 60%;display: flex;color: #ffffff;align-items: center;justify-content: center;height: 44px;background-color: #ffffff3f;border-radius: 6px;}
+        .clock span{width: 40px;font-size: 24px;}
+        .clock span:nth-child(2) , span:nth-child(4){width: 10px;}
+        #power_btn{width: 5px;cursor: pointer;border-radius: 0 2px 2px 0;height: 3pc;background-color: #4d4d4d;transform: translateY(-10pc);}
+        .screen_app_container{width:90%;height:fit-content;border-radius: 15px;background-color: #ffffff67;padding: 8px;display: flex;flex-wrap: wrap;position:absolute;bottom:15px;}
+        .app{width:32%;height: fit-content;cursor: pointer;}
+        .app img{width: 42px;aspect-ratio:1/1; border-radius: 12px;border: 1px solid #acacac;object-fit: cover;margin-top: 8px;background-color: #e4e4e4;}
+        .app span{font-size: 10px;font-weight: bold;width: 100%;display: flex;height: 10px;align-items: center;justify-content: center;
+        }
+    </style>
+
+    <div class="outer_cover"> 
+        <div class="screen" id="Home" style="display: none;">
+<br><br><br> 
+            <center>
+                <div class="clock">
+                    <span id="hrs">00</span>
+                    <span>:</span>
+                    <span id="min">00</span>
+                    <span>:</span>
+                    <span id="sec">00</span>
+                </div> 
+            </center>
+
+            <center>
+                <div class="screen_app_container">
+                    <div id="Allocate_site_open_door" class="app" ><img src="myn.png"><span>Myntra</span></div>
+                    <div id="Camera_open_door" class="app"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSnWJxSYzqrAm0m_FC2VtPbwudE0nW3TKgNbA&usqp=CAU"><span>Camera</span></div>
+                    <div id="Calculator_open_door" class="app"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ2u2Y6r0cy9ZHGAEn1y-N7Sy29lOxYY5L2NA&usqp=CAU"><span>Calculator</span></div>
+                    <div id="Musics_open_door" class="app"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSWtILTvlKtKXGfToLSDK93f_ACR4EVY0ifWg&usqp=CAU"><span>Musics</span></div>
+                    <div id="Phone_open_door" class="app"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTZM0w7Lhafp06v1oyLRDcEq3awSCcTXFV-k6y-NDhWwrWwpK9aaOOxnqsvRXoZWWmXV4g&usqp=CAU"><span>Phone</span></div>
+                </div>
+            </center>
+
+
+        </div>
+
+
+        <style>
+            #Allocate_site img{width:100%;}
+            .bottom{width:100%;height:50px;position:absolute;box-shadow:0 0 5px 0 #cacaca; background-color:#fff;bottom:0;left:0;display:flex;}
+            .bottom span{width:20%;height:100%;display:flex;flex-direction:column;justify-content:center;cursor:pointer;align-items:center;}
+            .bottom span img{height:38%;}
+            .bottom span p{font-size:10px;margin-top:3px;}
+            #icon1{position:absolute;top:10px;left:15px;width:30px;}
+        </style>
+        <div class="screen" id="Allocate_site"  style="display:none;">
+            <img src="\m_front.jpg" alt="">
+            <div class="bottom">
+                <span><img src="/myntra.svg" alt=""><p>Myntra</p></span>
+                <span><i class="fa-solid fa-bolt-lightning"></i><p>New</p></span>
+                <span onclick="wardrobe()"><i class="fa-solid fa-store"></i> <p>Wardrobe</p></span>
+                <span><i class="fa-solid fa-arrow-trend-up"></i><p>TrentNxt</p></span>
+                <span><i class="fa-regular fa-user"></i><p>Profile</p></span>
+            </div>
+        </div>
+
+
+        <style>
+            #Wardrobe_page_nav{width:100%;height:50px;display:flex;margin-bottom:10px;align-items:center;justify-content:space-between;padding:0 6px;padding-top:8px;}
+            #Wardrobe_page_nav i{width:14%;display:grid;place-content:center;font-size:18px;cursor:pointer;}
+            #Wardrobe_page_nav p{width:68%;font-size:15px;}
+            #Wardrobe_page_options1{width:90%;height:38px;border-radius:100px;background-color:#ddd;margin:auto;display:flex;border:1px solid #cacaca}
+            #Wardrobe_page_options1 button{width:50%;height:100%;border-radius:100px;background-color:transparent;cursor: pointer;}
+            #Wardrobe_page_collection{width:100%;height:fit-content;display:flex;flex-wrap:wrap;padding:5px 10px;gap:4px;}
+            #Wardrobe_page_collection img{width:68px;aspect-ratio:1/1;object-fit:cover;transition:0.3s ease;cursor:pointer;border-radius:8px;border:1px solid gray;outline:5px;}
+            #Wardrobe_page_collection img:hover{scale:90%;box-shadow:3px 2px 4px 0 gray;}
+            #Addmywardrobe{width:55px;aspect-ratio:1/1;border-radius:100%;box-shadow:2px 2px 6px 0 gray;position:absolute;bottom:16px;right:16px;color:#fff;background-color:#0088ff;cursor:pointer;}
+            #Addmywardrobe:hover{background-color:#006dcd;}
+            .calendar-icon {
+            font-size: 24px;
+            cursor: pointer;
+        }
+
+        </style>
+        <div class="screen" id="Wardrobe_page" style="display:none;">
+            <div id="Wardrobe_page_nav">
+                <i class="fa-solid fa-arrow-left" onclick="closewardrobe()"></i>
+                <p id="WardrobeOwner">Payal's wardrobe</p>
+                <i class="fa-regular fa-heart"></i>
+                <i class="fa-regular fa-calendar-days calendar-icon " onclick="calender()"></i>
+            </div>
+
+            <div id="Wardrobe_page_options1">
+                <button style="background-color:#000;color:#fff;">Your Wardrobe</button>
+                <button onclick="wardrobe2final()">Trend Match</button>
+            </div>
+            <p style="color:#acacac;padding:8px 14px;font-size:13px;">*select any fit from your wardrobe</p>
+            <div id="Wardrobe_page_collection">
+                <img onclick="wardrobefinal()" src="/Haldi/tshirt.webp" alt="">
+                <img onclick="wardrobefinal()" src="/Haldi/download.jpeg" alt="">
+                <img onclick="wardrobefinal()" src="/Haldi/4.jpeg" alt="">
+                <img onclick="wardrobefinal()" src="/Haldi/dress.jpeg" alt="">
+                <img onclick="wardrobefinal()" src="/Haldi/8.jpeg" alt="">
+                <img onclick="wardrobefinal()" src="/Haldi/2.jpeg" alt="">
+                <img onclick="wardrobefinal()" src="/Haldi/t3.jpeg" alt="">
+                <img onclick="wardrobefinal()" src="/Haldi/gym.jpeg" alt="">
+                <img onclick="wardrobefinal()" src="/Haldi/7.jpeg" alt="">
+                <img onclick="wardrobefinal()" src="/Haldi/images (1).jpeg" alt="">
+                <img onclick="wardrobefinal()" src="/Haldi/2.jpeg" alt="">
+                <img onclick="wardrobefinal()" src="/Haldi/5.jpeg" alt="">
+                <img onclick="wardrobefinal()" src="/Haldi/9.jpeg" alt="">
+                <img onclick="wardrobefinal()" src="/Haldi/3.jpeg" alt="">
+                <img onclick="wardrobefinal()" src="/Haldi/t2.webp" alt="">
+            </div>
+            <button id="Addmywardrobe" onclick="Addmywardrobe()" class="fa-solid fa-plus"></button>
+            <input type="file" onchange="previewPdf(event)" accept="image/*" id="mywardrobefile" style="display:none;">
+        </div>
+
+
+
+        <style>
+            #matchfits_nav{width:100%;height:50px;display:flex;align-items:center;padding:0 14px;gap:12px;padding-top:8px;}
+            #matchfits_nav img{width: 90px;top: 0px;display: flex;align-items: center;justify-content: center;}
+            #matchfits_con{width:100%;height:fit-content;display:flex;flex-direction:column;align-items:center;gap:6px;padding:7px;background-color:#fff;border-radius:25px 25px 0 0;position:absolute;bottom:0;box-shadow: 0 0 10px 0 gray;}
+            #matchfits_con button{width:100%;height:50px;border-radius:100px;background-color:#0088ff;color:#fff;display:flex;gap:14px;align-items:center;justify-content:center;cursor:pointer;}
+            #matchfits_con select{width:100%;height:33px;border:none;outline:none;padding:0 12px;}
+            #matchimg,#matchimg2{width:60%;margin-top:12px;transition:0.5s ease;cursor:pointer;aspect-ratio:1/1;object-fit:cover;border-radius:100%;border:4px solid #006dcd;}
+            #matchimg:hover,#matchimg2:hover{box-shadow:0 0 20px 0 #006dcd;}
+
+        </style>
+        <center class="screen" id="matchfits" style="background-color:#f1f1f1;display:none;">
+            <div id="matchfits_nav">
+                <i class="fa-solid fa-arrow-left" onclick="close_matchfits()"></i>
+                <p style="font-size:15px;"><b>Create your Outfit</b></p>
+            </div>
+            <img src="/Haldi/dress.jpeg" id="matchimg" alt="">
+            <p><i class="fa-solid fa-wand-magic-sparkles" style="margin-top:8px;"></i></p>
+           
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTqx1qGkj07u5jyV_v9nP_YJYC5wMHi9DlzSA&s" id="matchimg2" alt="">
+            <div id="matchfits_con">
+                <select id="">
+                    <option value="">Catagory</option>
+                    <option value="Headset">Headset</option>
+                    <option value="Top">Top</option>
+                    <option value="Lower">Lower</option>
+                    <option value="Footwear">Footwear</option>
+                </select>
+                <select id="">
+                    <option value="">Cost range</option>
+                    <option value="">500 - 1000</option>
+                    <option value="">1500 - 2000</option>
+                    <option value="">2500 - 3000</option>
+                    <option value="">5000 +</option>
+                </select>
+                <button  onclick="Searchoufit()"><i class="fa-solid fa-magnifying-glass"></i> Search Outfits</button>
+            </div>
+        </center>
+
+        <style>
+            #trendfits_nav{width: 100%;height: 50px;display: flex;align-items: center;padding: 0 14px;gap: 12px;padding-top: 8px;margin-bottom:10px;}
+            #trendfits_nav img{width:40px;top:0px;}
+            #trendfits_con{width:100%;height:fit-content;padding:20px;}
+            #trendfits_con img{width:100%;aspect-ratio:1/1;border-radius:100%;object-fit:cover;background-color:#fff;box-shadow:4px 0 10px 0 gray;}
+            @keyframes wheelspin {
+                0%{rotate:0;}100%{rotate:360deg;}
+            }
+            #trendfits_con2{width:100%;height:fit-content;position:absolute;bottom:0;left:0;padding:12px;display:flex;flex-direction:column;gap:8px;}
+            #trendfits_con2 button{width:100%;height:55px;border-radius:100px;background-color:#002aff;color:#fff;font-size:14px;display:flex;align-items:center;justify-content:center;gap:15px;cursor:pointer;box-shadow:3px 3px 6px 0 #4d4d4d;transition:0.5s ease;}
+            #trendfit{width:100%;height:fit-content;display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:10px;}
+            #trendfit img{width:45%;aspect-ratio:1/1;border:1px solid #000;border-radius:10px;object-fit:cover;background-color:#ddd;box-shadow:0 0 6px 0 gray;display:none;}
+            #trendfit p{width:15px;aspect-ratio:1/1;border:1px solid #000;border-radius:10px;object-fit:cover;background-color:#ddd;box-shadow:0 0 6px 0 gray;display:none;}
+            @keyframes popup2 {
+                from{transform:translate(-120%,0);}
+                to{transform:translate(0,0);}
+            }
+            @keyframes popup3 {
+                from{transform:translate(120%,0);}
+                to{transform:translate(0,0);}
+            }
+        </style>
+         <div class="screen" id="trendfits" style="display:none;">
+            
+            <div id="Wardrobe_page_nav">
+                <i class="fa-solid fa-arrow-left"onclick="close_trendfits(event)"></i>
+                <p id="WardrobeOwner">Trend Match</p>
+                <i class="fa-regular fa-calendar-days" style="font-size:22px;"></i>
+            </div>
+            <center id="trendfits_con">
+                <img id="trendwheel" src="/sp1.png" alt="">
+                <p id="trendfit3"><b>GRWM for today</b></p>
+            </center>
+            <div id="trendfits_con2">
+                <div id="trendfit">
+                    <img id="trendfit1" style="animation:popup2 0.3s ease-in;" src="/Haldi/t2.webp" alt="">
+                    <img id="trendfit2"style="animation:popup3 0.3s ease-in;" src="/Haldi/white.jpeg" alt="">
+                </div>
+                <button id="trendsavefit" style="opacity:0;background-color:gold;color:#000;"><i class="fa-solid fa-bookmark"></i>Save my fit</button>
+                <button onclick="spinthewheel()"><i class="fa-solid fa-wand-magic-sparkles"></i> Spin the wheel</button>
+            </div>
+
+        </div>
+
+        <style>
+            #calender{flex-direction:column;align-items:center;}
+            #calenderNew{width:90%;height:44px;border-radius:14px;}
+            #calenderlists{width:100%;height:fit-content;display:flex;padding:10px 0;gap:8px;flex-direction:column;align-items:center;}
+            .calenderlist{width:90%;height:fit-content;background-color:#f1f1f1;padding:3px 10px 8px 10px;border-radius:15px}
+            .calenderlist input{width:100%;background-color:transparent;}
+        </style>
+        <div class="screen" id="calender" style="display:none;">
+            <div id="Wardrobe_page_nav">
+                <i class="fa-solid fa-arrow-left" onclick="calendarclose()"></i>
+                <p id="WardrobeOwner">Calendar</p>
+                <i></i>
+            </div>
+            <button id="calenderNew" onclick="calenderNew()" class="fa-solid fa-plus"></button>
+            <div id="calenderlists">
+                
+            </div>
+
+        </div>
+
+    </div>
+    <span class="camera"></span>
+    <span id="power_btn"></span>
+
+
+
+    <script>    
+
+        function calender(){
+            document.getElementById('calender').style.display = 'flex';
+            document.getElementById('Wardrobe_page').style.display = 'none';
+        }
+        function calendarclose(){
+            document.getElementById('calender').style.display = 'none';
+            document.getElementById('Wardrobe_page').style.display = 'block';
+        }
+
+
+let d = 0,spin = true;
+
+
+const images = ['/Haldi/s1.jpeg', '/Haldi/s2.jpeg', '/Haldi/s3.jpeg', '/Haldi/s4.jpeg', '/Haldi/s5.jpeg', '/Haldi/s2.jpeg']; 
+
+
+    function Searchoufit(){
+             let index = 0;
+            const interval = setInterval(() => {
+                    document.getElementById('matchimg2').src = images[index];
+                    index = (index + 1) % images.length; 
+            }, 200);
+
+            setTimeout(() => {
+                clearInterval(interval);
+                document.getElementById('matchimg2').src = images[0]; 
+            }, 4000);
+        }
+
+
+
+
+    //     setInterval(()=>{
+    //       if(spin){
+    //         d += 1;
+    //         if(d % 2!= 0){
+    //             document.getElementById('matchimg2').src = '/Haldi/blackj.jpeg';
+    //         }else{document.getElementById('matchimg2').src = '/Haldi/white.jpeg';}
+    //       }
+    //     },200)
+    //     setTimeout(()=>{
+    //         spin = false;
+
+    //         clearInterval(interval);
+
+    //         document.getElementById('matchimg2').src = '/Haldi/blackj.jpeg';
+    //     },4000)
+    // }
+
+        let c = 1;
+    function calenderNew(){
+        document.getElementById('calenderlists').innerHTML += `<div class="calenderlist">
+            <input type="date" id='date${c}' style="font-size:12px;">
+            <input type="text" placeholder="Enter your event" style="font-size:14px;color:gray;">
+            </div>`;
+            document.getElementById(`date${c}`).focus()
+            c += 1;
+    }
+
+        let a = 0;
+    function spinthewheel(){
+        a += 1;
+        document.getElementById('trendwheel').style.animation = 'wheelspin 0.5s linear infinite';
+        setTimeout(()=>{
+            document.getElementById('trendwheel').style.animation = 'none';
+            document.getElementById('trendfit1').style.display = 'block';
+            document.getElementById('trendfit2').style.display = 'block';
+            document.getElementById('trendsavefit').style.opacity = '1';
+            confetti();
+            confetti();
+            confetti();
+            confetti();
+        },3000)
+    }
+
+function previewPdf(event){
+        var input = event.target;
+        var reader = new FileReader();
+        reader.onload = function(){
+            document.getElementById('Wardrobe_page_collection').innerHTML += `<img src="${reader.result}" alt="">`
+        };
+        reader.readAsDataURL(input.files[0]);
+      }
+
+
+        function Addmywardrobe(){
+            document.getElementById('mywardrobefile').click();
+        }
+
+        function wardrobe(){
+            document.getElementById('Wardrobe_page').style.display = 'block';
+            document.getElementById('Allocate_site').style.display = 'none';
+        }
+
+
+        function wardrobefinal(){
+            document.getElementById('Wardrobe_page').style.display = 'none';
+            document.getElementById('matchfits').style.display = 'block';
+        }
+        function close_matchfits(){
+            document.getElementById('Wardrobe_page').style.display = 'block';
+            document.getElementById('matchfits').style.display = 'none';
+        }
+
+        function wardrobe2final(){
+            document.getElementById('Wardrobe_page').style.display = 'none';
+            document.getElementById('trendfits').style.display = 'block';
+        }
+        function close_trendfits(){
+            document.getElementById('Wardrobe_page').style.display = 'block';
+            document.getElementById('trendfits').style.display = 'none';
+        }
+
+
+        function closewardrobe(){
+            document.getElementById('Wardrobe_page').style.display = 'none';
+            document.getElementById('Allocate_site').style.display = 'block';
+        }
+
+
+        document.getElementById('Allocate_site_open_door').addEventListener('click',()=>{
+            document.getElementById('Allocate_site').style.display = 'block';
+            document.getElementById('Home').style.display = 'none'; 
+            document.getElementById('Wardrobe').style.display = 'none'; 
+        });
+    
+    
+        let b = 0;
+        document.getElementById('power_btn').addEventListener('click',()=>{
+            b = b + 1;
+            if(b % 2 != 0){ 
+                document.getElementById('Home').style.display = 'block';
+            }
+            else{ 
+                document.getElementById('Home').style.display = 'none';
+                document.getElementById('Allocate_site').style.display = 'none';
+                document.getElementById('Wardrobe_page').style.display = 'none';
+            }
+        });
+    
+    
+    
+    
+    
+        let hrs = document.getElementById('hrs');
+        let min = document.getElementById('min');
+        let sec = document.getElementById('sec');
+        
+        setInterval(()=>{
+            
+            let currentTime = new Date();
+    
+            hrs.innerHTML = currentTime.getHours();
+            min.innerHTML = currentTime.getMinutes();
+            sec.innerHTML = currentTime.getSeconds(); 
+    
+            sessionStorage.setItem("Hours spend : " , currentTime.getHours());
+        },1000);
+    
+    
+    
+        
+    </script>
+
+    </body>
+    </html>
